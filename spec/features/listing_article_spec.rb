@@ -33,6 +33,5 @@ RSpec.feature 'Listing Articles' do
     within ("h1#no-articles") do
       expect(page).to have_content('There are no articles created yet.')
     end
-
   end
 end
