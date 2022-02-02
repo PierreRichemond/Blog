@@ -1,4 +1,5 @@
-@import "bootstrap-sprockets";
+
+ @import "bootstrap-sprockets";
 @import "bootstrap";
 
 body {
@@ -7,7 +8,7 @@ body {
   color: #64103F;
 }
 
-// Navbar styling
+/* // Navbar styling */
 .navbar {
  background: #64103F;
  padding-bottom: 20px;
@@ -43,12 +44,12 @@ body {
   color: #ff0000;
 }
 
-// Form styling
+/* // Form styling */
 .page-heading, div > label {
   color: #64103F;
 }
 
-// Listing articles styling
+/* Listing articles styling */
 
 .article-title {
   font-weight: bold;
