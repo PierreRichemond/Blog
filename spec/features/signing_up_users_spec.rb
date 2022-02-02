@@ -10,6 +10,7 @@ RSpec.feature 'Sign up users' do
     click_button 'Sign up'
 
     expect(page).to have_content('You have signed up successfully.')
+    expect(page).to have_link('Sign out')
   end
 
   scenario 'With invalid credentials' do
@@ -21,5 +22,6 @@ RSpec.feature 'Sign up users' do
     click_button 'Sign up'
 
     # expect(page).to have_content('You have not signed up successfully.')
+    expect(page).not_to have_link('Sign out')
   end
 end
