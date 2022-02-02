@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.feature 'Listing Articles' do
-
   before do
-    @article1 = Article.create(title: "First Article", body: 'Lorem Ipsum')
-
-    @article2 = Article.create(title: "Second Article", body: 'Body of the second article')
+    @john = User.create!(email: "john@example.com", password: "password")
+    login_as(@john)
+    @article1 = Article.create(title: "First Article", body: 'Lorem Ipsum', user: @john)
+    @article2 = Article.create(title: "Second Article", body: 'Body of the second article', user: @john)
   end
 
   scenario 'A user lists all articles' do
@@ -30,7 +30,7 @@ RSpec.feature 'Listing Articles' do
     expect(page).not_to have_link(@article1.title)
     expect(page).not_to have_link(@article2.title)
 
-    within ("h1#no-articles") do
+    within("h1#no-articles") do
       expect(page).to have_content('There are no articles created yet.')
     end
   end
