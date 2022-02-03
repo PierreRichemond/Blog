@@ -8,22 +8,24 @@ class CommentsController < ApplicationController
     else
       @comment = @article.comments.build(comment_params)
       @comment.user = current_user
+
       if @comment.save
-        flash[:alert] = "Comment has been created"
+        ActionCable.server.broadcast "comments",
+          render(partial: 'comments/comment', object: @comment)
+        flash[:notice] = "Comment has been created"
       else
-        flash[:alert] = "Comment has not been created"
+        flash.now[:alert] = "Comment has not been created"
       end
       redirect_to article_path(@article)
     end
   end
 
   private
+    def comment_params
+      params.require(:comment).permit(:body)
+    end
 
-  def comment_params
-    params.require(:comment).permit(:body)
-  end
-
-  def set_article
-    @article = Article.find(params[:article_id])
-  end
+    def set_article
+      @article = Article.find(params[:article_id])
+    end
 end
