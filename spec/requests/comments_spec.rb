@@ -32,7 +32,7 @@ RSpec.describe "Comments", type: :request do
         flash_message = 'Comment has been created'
         expect(flash[:alert]).to eq(flash_message)
         expect(response).to redirect_to(article_path(@article.id))
-        expect(response.status).to eq(200)
+        expect(response.status).to eq(302)
       end
     end
   end
